@@ -1,0 +1,2 @@
+# SynText
+Text Readability Analyzer
