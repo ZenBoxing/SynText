@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using SynTextLibrary;
+
 
 namespace SynTextDesktopUI
 {
@@ -19,6 +21,7 @@ namespace SynTextDesktopUI
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<ShellViewModel>();
+            APIHelper.InitializeClient();
         }
     }
 }

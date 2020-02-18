@@ -24,11 +24,13 @@ namespace SynTextDataManager.Controllers
         }
 
         // POST: api/Text
-        public string Post(SampleText text)
+        public SampleText Post(SampleText text)
         {
             TextAnalyser textAnalyser = new TextAnalyser();
             string output = textAnalyser.GetReadabilityLevel(text.Text);
-            return output;
+            SampleText sample = new SampleText();
+            sample.Text = output;
+            return sample;
             //return text.Text;
         }
 

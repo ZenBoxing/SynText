@@ -113,5 +113,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SynTextLibrary\SynTextLibrary.csproj">
+      <Project>{0a341823-bfbe-43d9-a725-7caac8dc69ca}</Project>
+      <Name>SynTextLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
