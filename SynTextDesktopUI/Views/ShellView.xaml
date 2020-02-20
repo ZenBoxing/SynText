@@ -19,10 +19,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1">
-            <Button x:Name="ActionButton" Content="Enter" 
+            <Button x:Name="Submit" Content="Enter" 
                     Margin="30 10 30 10" Padding="10 10 10 10"/>
             <TextBlock Text="Readability Level: " Margin="70 10 30 0"/>
-            <TextBlock Text="(Level Displayed Here)" Margin="55 0 30 10"/>
+            <TextBlock Text="{Binding Path=Response, Mode=OneWay}" Margin="55 0 30 10"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.RowSpan="3" 
@@ -30,9 +30,15 @@
             <Border Padding="10 10 10 10">
                 <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
                          VerticalScrollBarVisibility="Auto" MaxHeight="350"
-                         FontSize="14"/>
+                         FontSize="14" MaxLength="5000"/>
             </Border>
-            <TextBlock Text="Characters: ?/5000" Margin="300 0 0 0" FontSize="12"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Characters: " Margin="300 0 0 0" FontSize="12"/>
+                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="12"/>
+                <TextBlock Text="/5000" FontSize="12"/>
+            </StackPanel>
+            
 
         </StackPanel>
         

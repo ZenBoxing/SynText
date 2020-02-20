@@ -73,6 +73,16 @@ namespace SynTextLibrary
 
             int GIndex = GetGunningFoxIndex(NumOfSentences, NumOfTotalWords, NumOfComplexWords);
 
+            if (GIndex < 6)
+            {
+                GIndex = 6;
+            }
+
+            if (GIndex > 17)
+            {
+                GIndex = 17;
+            }
+
             GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.FoxIndex == GIndex);
 
             if (NumOfComplexWords == -1)
