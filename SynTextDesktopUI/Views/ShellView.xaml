@@ -4,45 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SynTextDesktopUI.Views"
-        mc:Ignorable="d" FontFamily="Segoe UI Light" FontSize="18" 
-        Title="ShellView" Height="450" Width="800" >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        mc:Ignorable="d" FontSize="18" 
+        Title="SynText" Height="450" Width="800" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI Semilight">
+    <Border Background="White" Padding="2">
+        <Grid >
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#111344" Offset="1"/>
+                    <GradientStop Color="#FF662362"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1">
-            <Button x:Name="Submit" Content="Enter" 
-                    Margin="30 10 30 10" Padding="10 10 10 10"/>
-            <TextBlock Text="Readability Level: " Margin="70 10 30 0"/>
-            <TextBlock Text="{Binding Path=Response, Mode=OneWay}" Margin="55 0 30 10"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="0" Grid.RowSpan="3" 
-                    Grid.Column="1" Grid.ColumnSpan="2">
-            <Border Padding="10 10 10 10">
-                <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
-                         VerticalScrollBarVisibility="Auto" MaxHeight="350"
-                         FontSize="14" MaxLength="5000"/>
-            </Border>
-
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Characters: " Margin="300 0 0 0" FontSize="12"/>
-                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="12"/>
-                <TextBlock Text="/5000" FontSize="12"/>
+            <StackPanel Grid.Row="1">
+                <Button x:Name="Submit"  Content="Submit" 
+                    Margin="30 10 30 10" Padding="10 10 10 10"
+                    MinHeight="45" Background="#FFEA87D4"/>
+                <TextBlock Text="Readability Level: " Margin="70 10 30 0" Foreground="White"/>
+                <TextBlock Text="{Binding Path=Response, Mode=OneWay}" Margin="55 0 30 10"
+                           Foreground="White"/>
             </StackPanel>
-            
 
-        </StackPanel>
-        
-        
+            <StackPanel Grid.Row="0" Grid.RowSpan="3" 
+                    Grid.Column="1" Grid.ColumnSpan="2">
+                <Border Padding="10 10 10 3">
+                    <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
+                         VerticalScrollBarVisibility="Auto" MaxHeight="350"
+                         FontSize="14" MaxLength="5000"  Background="White"
+                         Padding="5"/>
+                </Border>
 
-    </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="12" Foreground="White"
+                               Margin="450 0 0 0"/>
+                    <TextBlock Text="/5000" FontSize="12" Foreground="White"/>
+                </StackPanel>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

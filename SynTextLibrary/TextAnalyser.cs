@@ -10,11 +10,14 @@ namespace SynTextLibrary
 {
     public class TextAnalyser
     {
-        //public Dictionary<int, string> GunningFoxValues = new Dictionary<int, string>();
         private List<GunningFoxValue> GunningFoxValues = new List<GunningFoxValue>();
 
         public TextAnalyser()
         {
+            GunningFoxValues.Add(new GunningFoxValue(-2,"Unable to Access Data"));
+            GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
+            GunningFoxValues.Add(new GunningFoxValue(0, "Invalid Sample"));
+            GunningFoxValues.Add(new GunningFoxValue(5, "Below Six Grade"));
             GunningFoxValues.Add(new GunningFoxValue(6, "Sixth Grade"));
             GunningFoxValues.Add(new GunningFoxValue(7, "Seventh Grade"));
             GunningFoxValues.Add(new GunningFoxValue(8, "Eigth Grade"));
@@ -27,6 +30,7 @@ namespace SynTextLibrary
             GunningFoxValues.Add(new GunningFoxValue(15, "College Junior"));
             GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
             GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
+            GunningFoxValues.Add(new GunningFoxValue(18,"Above College Graduate"));
         }
 
         /// <summary>
@@ -35,24 +39,33 @@ namespace SynTextLibrary
         /// </summary>
         /// <param name="SampleText">Text to Analyze</param>
         /// <returns>The Reading level of the sample text</returns>
-        public string GetReadabilityLevel(string SampleText)
+        public string GetReadabilityLevel(string sampleText)
         {
-            //----Split sample text into word array
+            //Separate text into array of individual words
+            string[] separatedWordArray = GetSeparatedWordArray(sampleText);
 
-            //matches all non-letter characters
-            Regex wordRegex = new Regex("[^a-zA-Z0-9 -]");
+            if (isTextInEnglish(separatedWordArray))
+            {
+                //----Split sample text into sentance array 
 
+                string[] separatedSentanceArray = GetSeparatedSentenceArray(sampleText);
 
-            char[] wordSeparators = { ' ' };
+                //---Get GunningFoxValue
+                int GIndex = GetGunningFoxIndex(separatedWordArray, separatedSentanceArray);
 
-            //Replaces non-letter characters with space
-            string lettersOnlyText = wordRegex.Replace(SampleText, " ");
-            //Splits sample text into array
-            string[] separatedWordArray = lettersOnlyText.Split(wordSeparators, StringSplitOptions.RemoveEmptyEntries);
-            //Remove duplicate words from array
-            string[] uniqueWordArray = new HashSet<string>(separatedWordArray).ToArray();
+                GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.FoxIndex == GIndex);
 
-            //----Split sample text into sentance array 
+                return GFoxValue.ReadingLevelByGrade;
+
+            }
+            else
+            {
+                return "English Text Only";
+            }
+        }
+
+        private string[] GetSeparatedSentenceArray(string sampleText)
+        {
 
             //Matches question mark and exclam characters
             Regex sentanceRegex = new Regex("[?!]");
@@ -60,39 +73,27 @@ namespace SynTextLibrary
 
             char[] sentanceSeparators = { '.' };
             //Replaces matches with period charcter
-            string periodOnlyText = sentanceRegex.Replace(SampleText, ".");
+            string periodOnlyText = sentanceRegex.Replace(sampleText, ".");
             //splits text into sentance array
+
             string[] separatedSentanceArray = periodOnlyText.Split(sentanceSeparators, StringSplitOptions.RemoveEmptyEntries);
 
-            //---
+            return separatedSentanceArray;
+        }
 
-            int NumOfTotalWords = separatedWordArray.Length;
-            //Get the number of complex words by retrieve word frequency data from database
-            int NumOfComplexWords = GetComplexWordCount(GetRevisedWordArray(uniqueWordArray));
-            int NumOfSentences = separatedSentanceArray.Length;
+        private string[] GetSeparatedWordArray(string sampleText)
+        {
+            //matches all non-letter characters
+            Regex wordRegex = new Regex("[^a-zA-Z]");
 
-            int GIndex = GetGunningFoxIndex(NumOfSentences, NumOfTotalWords, NumOfComplexWords);
+            char[] wordSeparators = { ' ' };
 
-            if (GIndex < 6)
-            {
-                GIndex = 6;
-            }
+            //Replaces non-letter characters with space
+            string lettersOnlyText = wordRegex.Replace(sampleText, " ");
+            //Splits sample text into array
+            string[] separatedWordArray = lettersOnlyText.Split(wordSeparators, StringSplitOptions.RemoveEmptyEntries);
 
-            if (GIndex > 17)
-            {
-                GIndex = 17;
-            }
-
-            GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.FoxIndex == GIndex);
-
-            if (NumOfComplexWords == -1)
-            {
-                return "Error";
-            }
-            else
-            {
-                return GFoxValue.ReadingLevelByGrade;
-            }
+            return separatedWordArray;
         }
 
         private int GetComplexWordCount(string[] WordArray)
@@ -130,13 +131,14 @@ namespace SynTextLibrary
                             }
                         }
                     }
+
                     return complexWordCount;
                 }
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
-                return -1;
+                return -2;
             }
         }
 
@@ -157,9 +159,97 @@ namespace SynTextLibrary
             return RevisedWordArray.ToArray();
         }
 
-        public static int GetGunningFoxIndex(int NumOfSentences, int NumOfTotalWords, int NumOfComplexWords)
+        private int GetGunningFoxIndex(string[] sepWordArray, string[] sepSentanceArray)
         {
-            return (int)(0.4 * ((NumOfTotalWords / NumOfSentences) + 100 * (NumOfComplexWords / NumOfTotalWords)));
+            string[] uniqueWordArray = new HashSet<string>(sepWordArray).ToArray();
+
+            double NumOfTotalWords = sepWordArray.Length;
+
+            //Get the number of complex words by retrieving word frequency data from database
+            double NumOfComplexWords = GetComplexWordCount(GetRevisedWordArray(uniqueWordArray));
+
+            double NumOfSentences = sepSentanceArray.Length;
+
+            int GFoxIndex ;
+
+            //Handling this exception could be better
+            if (NumOfComplexWords == -2)
+            {
+                GFoxIndex = -2;
+            }
+            else
+            {
+                GFoxIndex = CalculateGunningFoxIndex(NumOfSentences, NumOfTotalWords, NumOfComplexWords);
+            }
+
+            if (GFoxIndex < 6 && GFoxIndex > 0)
+            {
+                GFoxIndex = 5;
+            }
+
+            if (GFoxIndex > 17)
+            {
+                GFoxIndex = 18;
+            }
+
+
+            return GFoxIndex;
+        }
+
+        private int CalculateGunningFoxIndex(double NumOfSentences, double NumOfTotalWords, double NumOfComplexWords)
+        {
+            try
+            {
+                return (int)(0.4 * ((NumOfTotalWords / NumOfSentences) + 100 * (NumOfComplexWords / NumOfTotalWords)));
+            }
+            catch (System.DivideByZeroException)
+            {
+                return -1;               
+            }
+        }
+
+        private bool isTextInEnglish(string[] text)
+        {
+            bool outcome = false;
+
+            try
+            {
+                List<string> foundWords = new List<string>();
+
+                using (SynTextDBEntities db = new SynTextDBEntities())
+                {
+                    foreach (var word in text)
+                    {
+                        var record = db.words.Where(i => i.word1 == word).FirstOrDefault();
+                        if (record != null)
+                        {
+                            foundWords.Add(word);
+                        }
+                    }
+                }
+
+                double foundCount = foundWords.Count;
+                double textCount = text.Length;
+                 
+                double portion = foundCount / textCount;
+
+                
+                if (portion > .50)
+                {
+                    outcome = true;
+                }
+            }
+            catch (System.DivideByZeroException)
+            {
+                outcome = false;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+
+            return outcome;
         }
     }
 }

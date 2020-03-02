@@ -9,6 +9,20 @@
                     <local:Bootstrapper x:Key="Bootstrapper"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="RoundButtonTemplate" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>
