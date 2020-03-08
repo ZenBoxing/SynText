@@ -5,83 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SynTextLibrary;
+using System.Windows;
+using System.Windows.Input;
+using SynTextDesktopUI.Views;
 
 namespace SynTextDesktopUI.ViewModels
 {
-    public class ShellViewModel : Screen
+    public class ShellViewModel : Conductor<object>
     {
-        private string _sampleText = "Type/paste sample text here.";
+        private AppViewModel _appVM = new AppViewModel();
 
-        public string SampleText
+        public ShellViewModel()
         {
-            get
-            {
-                return _sampleText;
-            }
-            set
-            {
-                _sampleText = value;
-                NotifyOfPropertyChange(() => SampleText);
-                NotifyOfPropertyChange(() => CanSubmit);
-            }
+            ActivateItem(_appVM);
         }
 
-        private string _response;
+        private Window _mainWindow = App.Current.MainWindow;
 
-        public string Response
+        public Window MainWindow
         {
-            get
-            {
-                return _response;
-            }
-            set
-            {
-                _response = value;
-                NotifyOfPropertyChange(() => Response);
-                //NotifyOfPropertyChange(() =>CanSubmit);
-            }
+            get { return _mainWindow = App.Current.MainWindow; }
+            set { _mainWindow = App.Current.MainWindow = value; }
         }
 
-        private string _counter;
-
-        public string Counter
+        public void Close()
         {
-            get
-            {
-                return _counter;
-            }
-            set
-            {
-                _counter = value;
-            }
-        } 
-
-
-
-
-        public bool CanSubmit
-        {
-            get
-            {
-                bool output = false;
-                if (SampleText?.Length > 0)
-                {
-                    output = true;
-                }
-
-                return output;
-            }
+            MainWindow.Close();
         }
 
-        public async Task Submit()
+        public void Minimize()
         {
-            SampleText sample = new SampleText();
-            sample.Text = SampleText;
-
-            ResponseString responseString = await TextProcessor.LoadReadablityAsync(sample);
-
-            Response = responseString.Text;
+            MainWindow.WindowState = WindowState.Minimized;
         }
-
     }
+
+    
 }

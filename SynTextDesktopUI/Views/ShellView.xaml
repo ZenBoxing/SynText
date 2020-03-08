@@ -5,52 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SynTextDesktopUI.Views"
         mc:Ignorable="d" FontSize="18" 
-        Title="SynText" Height="450" Width="800" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI Semilight">
-    <Border Background="White" Padding="2">
-        <Grid >
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#111344" Offset="1"/>
-                    <GradientStop Color="#FF662362"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        Title="SynText" Height="450" Width="800" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI Semilight" WindowStyle="None"
+        >
 
-            <StackPanel Grid.Row="1">
-                <Button x:Name="Submit"  Content="Submit" 
-                    Margin="30 10 30 10" Padding="10 10 10 10"
-                    MinHeight="45" Background="#FFEA87D4"/>
-                <TextBlock Text="Readability Level: " Margin="70 10 30 0" Foreground="White"/>
-                <TextBlock Text="{Binding Path=Response, Mode=OneWay}" Margin="55 0 30 10"
-                           Foreground="White"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="0" Grid.RowSpan="3" 
-                    Grid.Column="1" Grid.ColumnSpan="2">
-                <Border Padding="10 10 10 3">
-                    <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
-                         VerticalScrollBarVisibility="Auto" MaxHeight="350"
-                         FontSize="14" MaxLength="5000"  Background="White"
-                         Padding="5"/>
-                </Border>
-
-                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                    <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="12" Foreground="White"
-                               Margin="450 0 0 0"/>
-                    <TextBlock Text="/5000" FontSize="12" Foreground="White"/>
+       <DockPanel>
+        <Grid Height="25" DockPanel.Dock="Top">
+            <StackPanel Grid.Row="0" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Orientation="Horizontal"
+                    MinHeight="25"
+                    Background="White"
+                    VerticalAlignment="Top"
+                    >
+                <StackPanel Orientation="Horizontal"
+                        Margin="20 0 0 0"
+                        >
+                    <Image Source="/Images/Book-Shelf.png"
+                       MaxHeight="25"/>
+                    <TextBlock Text="SynText"
+                     Background="White" 
+                     Margin="5 0 0 0"
+                     FontFamily="Segoe UI Black"
+                     FontSize="16"
+                     Foreground="#52154E"/>
                 </StackPanel>
-
+                <StackPanel Orientation="Horizontal"
+                        Margin="610 0 0 0"
+                        >
+                    <Button x:Name="Minimize"
+                            MaxHeight="25"
+                            Background="White"
+                            BorderThickness="0">
+                        <Image Source="/Images/Minus.png"
+                       MaxHeight="25"/>
+                    </Button>
+                    <Button x:Name="Close" 
+                            MaxHeight="25"
+                            Background="white"
+                            BorderThickness="0">
+                        <Image Source="/Images/CircleCloseNavy.png"
+                       MaxHeight="25"/>    
+                    </Button>
+                </StackPanel>
 
             </StackPanel>
         </Grid>
-    </Border>
+        <Border Background="White" Padding="2" >
+            <Border Padding="2">
+                <ContentControl x:Name="ActiveItem"/>
+            </Border>
+        </Border>
+    </DockPanel>
+        
 </Window>
