@@ -24,5 +24,10 @@ namespace SynTextDesktopUI.Views
         {
             InitializeComponent();
         }
+
+        private void onMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

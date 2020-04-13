@@ -26,6 +26,7 @@ namespace SynTextDesktopUI.ViewModels
         {
             get { return _mainWindow = App.Current.MainWindow; }
             set { _mainWindow = App.Current.MainWindow = value; }
+            
         }
 
         public void Close()

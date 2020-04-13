@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SynTextDesktopUI.Views"
         mc:Ignorable="d" FontSize="18" 
-        Title="SynText" Height="450" Width="800" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI Semilight" WindowStyle="None"
+        Title="SynText" Height="450" Width="800" 
+        WindowStartupLocation="CenterScreen" 
+        FontFamily="Segoe UI Semilight" 
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
         >
 
        <DockPanel>
-        <Grid Height="25" DockPanel.Dock="Top">
+        <Grid Height="27" DockPanel.Dock="Top">
             <StackPanel Grid.Row="0" 
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
@@ -17,6 +21,7 @@
                     MinHeight="25"
                     Background="White"
                     VerticalAlignment="Top"
+                    Margin="0 2 0 0"
                     >
                 <StackPanel Orientation="Horizontal"
                         Margin="20 0 0 0"
