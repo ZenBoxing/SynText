@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynTextDataManager", "SynTextDataManager\SynTextDataManager.csproj", "{E564B973-6871-463F-92EB-4E1C1DA8BA06}"
 EndProject
@@ -12,6 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{092DC2CE-4D24-4D61-B960-6A648A7DA849}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynTextDesktopUI", "SynTextDesktopUI\SynTextDesktopUI.csproj", "{D8A5E878-9854-4FED-9339-D1D2933C1665}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{0BE61438-BFAC-43FE-8C7C-DBCAD4684C3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{25462FCC-7631-463D-9169-FEA0A49B5656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynTextDataManager.Library", "SynTextDataManager.Library\SynTextDataManager.Library.csproj", "{67F7AE13-4933-49B1-9C8E-B70B22FF44FB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SynTextDatabase", "SynTextDatabase\SynTextDatabase.sqlproj", "{DCE08812-D84E-41F4-8DC8-787865C2134B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +47,25 @@ Global
 		{D8A5E878-9854-4FED-9339-D1D2933C1665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A5E878-9854-4FED-9339-D1D2933C1665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A5E878-9854-4FED-9339-D1D2933C1665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F7AE13-4933-49B1-9C8E-B70B22FF44FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F7AE13-4933-49B1-9C8E-B70B22FF44FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F7AE13-4933-49B1-9C8E-B70B22FF44FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F7AE13-4933-49B1-9C8E-B70B22FF44FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE08812-D84E-41F4-8DC8-787865C2134B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E564B973-6871-463F-92EB-4E1C1DA8BA06} = {25462FCC-7631-463D-9169-FEA0A49B5656}
+		{27818DEB-2FEB-4D82-B547-380564B4F89A} = {0BE61438-BFAC-43FE-8C7C-DBCAD4684C3E}
+		{67F7AE13-4933-49B1-9C8E-B70B22FF44FB} = {25462FCC-7631-463D-9169-FEA0A49B5656}
+		{DCE08812-D84E-41F4-8DC8-787865C2134B} = {0BE61438-BFAC-43FE-8C7C-DBCAD4684C3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB8DB120-EACA-4B16-819F-D1D01795B806}

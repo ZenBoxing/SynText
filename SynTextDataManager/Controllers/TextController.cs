@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using SynTextLibrary;
+using SynTextDataManager.Library.Models;
+using SynTextDataManager.Library.Logic;
 
 
 namespace SynTextDataManager.Controllers
