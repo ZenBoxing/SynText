@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SynTextDataManager.Library.Internal.DataAccess
 {
-    internal class SqlDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
         private readonly IConfiguration _config;
         public SqlDataAccess(IConfiguration config)
@@ -20,8 +20,8 @@ namespace SynTextDataManager.Library.Internal.DataAccess
         }
 
         public SqlDataAccess()
-        { 
-        
+        {
+
         }
 
         public string GetConnectionString(string name)
