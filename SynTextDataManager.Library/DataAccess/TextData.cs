@@ -8,7 +8,7 @@ using SynTextDataManager.Library.Models;
 
 namespace SynTextDataManager.Library.DataAccess
 {
-    public class TextData
+    public class TextData : ITextData
     {
         private readonly ISqlDataAccess sqlDataAccess;
 
@@ -19,7 +19,13 @@ namespace SynTextDataManager.Library.DataAccess
 
         public List<WordModel> GetComplexWords()
         {
-            var output = sqlDataAccess.LoadData<WordModel, dynamic>("spComplexWordLookup", new { }, "DefaultConnection");
+            var output = sqlDataAccess.LoadData<WordModel, dynamic>("spComplexWordLookup", new { }, "SynTextDatabase");
+            return output;
+        }
+
+        public List<WordModel> GetAllWords()
+        {
+            var output = sqlDataAccess.LoadData<WordModel, dynamic>("spGetAllWords", new { }, "SynTextDatabase");
             return output;
         }
     }

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ITextData.cs" />
     <Compile Include="DataAccess\TextData.cs" />
     <Compile Include="Internal\DataAccess\ISqlDataAccess.cs" />
     <Compile Include="Internal\DataAccess\SqlDataAccess.cs" />

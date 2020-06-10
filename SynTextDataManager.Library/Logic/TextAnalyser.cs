@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SynTextDataManager.Library.Models;
+using SynTextDataManager.Library.DataAccess;
 
 namespace SynTextDataManager.Library.Logic
 {
@@ -12,7 +13,9 @@ namespace SynTextDataManager.Library.Logic
     {
         private List<GunningFoxValue> GunningFoxValues = new List<GunningFoxValue>();
 
-        public TextAnalyser()
+        public ITextData ITextData { get; }
+
+        public TextAnalyser(ITextData ITextData)
         {
             GunningFoxValues.Add(new GunningFoxValue(-2, "Unable to Access Data"));
             GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
@@ -31,6 +34,7 @@ namespace SynTextDataManager.Library.Logic
             GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
             GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
             GunningFoxValues.Add(new GunningFoxValue(18, "Above College Graduate"));
+            this.ITextData = ITextData;
         }
 
         /// <summary>
@@ -100,8 +104,8 @@ namespace SynTextDataManager.Library.Logic
         {
             try
             {
-                using (SynTextDBEntities db = new SynTextDBEntities())
-                {
+                    List<WordModel> WordDictionary = ITextData.GetAllWords();
+
                     List<string> FoundCompWords = new List<string>();
                     List<string> UnFoundCompWords = new List<string>();
                     int complexWordCount = 0;
@@ -109,12 +113,12 @@ namespace SynTextDataManager.Library.Logic
                     {
                         //2058885 
 
-                        var record = db.words.Where(i => i.word1 == word).FirstOrDefault();
-
+                        //var record = db.words.Where(i => i.word1 == word).FirstOrDefault();
+                        var record = WordDictionary.Where(i => i.Word == word).FirstOrDefault();
                         //removes plural
                         if (record == null)
                         {
-                            record = db.words.Where(i => i.word1 == word.Remove(word.Length - 1, 1)).FirstOrDefault();
+                            record = WordDictionary.Where(i => i.Word == word.Remove(word.Length - 1, 1)).FirstOrDefault();
                         }
 
                         if (record == null)
@@ -124,7 +128,7 @@ namespace SynTextDataManager.Library.Logic
                         }
                         else
                         {
-                            if (record.wordrank < 2058885)
+                            if (record.WordRank < 2058885)
                             {
                                 complexWordCount++;
                                 FoundCompWords.Add(word);
@@ -133,7 +137,6 @@ namespace SynTextDataManager.Library.Logic
                     }
 
                     return complexWordCount;
-                }
             }
             catch (Exception ex)
             {
@@ -216,17 +219,16 @@ namespace SynTextDataManager.Library.Logic
             {
                 List<string> foundWords = new List<string>();
 
-                using (SynTextDBEntities db = new SynTextDBEntities())
-                {
+                List<WordModel> WordDictionary = ITextData.GetAllWords();
+
                     foreach (var word in text)
                     {
-                        var record = db.words.Where(i => i.word1 == word).FirstOrDefault();
+                        var record = WordDictionary.Where(i => i.Word == word).FirstOrDefault();
                         if (record != null)
                         {
                             foundWords.Add(word);
                         }
                     }
-                }
 
                 double foundCount = foundWords.Count;
                 double textCount = text.Length;
