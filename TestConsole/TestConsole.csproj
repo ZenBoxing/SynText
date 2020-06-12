@@ -65,10 +65,17 @@
       <Project>{27818deb-2feb-4d82-b547-380564b4f89a}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SynTextDataManager.Library\SynTextDataManager.Library.csproj">
+      <Project>{67f7ae13-4933-49b1-9c8e-b70b22ff44fb}</Project>
+      <Name>SynTextDataManager.Library</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SynTextLibrary\SynTextLibrary.csproj">
       <Project>{0a341823-bfbe-43d9-a725-7caac8dc69ca}</Project>
       <Name>SynTextLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

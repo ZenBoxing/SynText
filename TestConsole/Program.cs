@@ -5,7 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
-using SynTextLibrary;
+using SynTextDataManager.Library.Logic;
+using SynTextDataManager.Library.DataAccess;
 
 namespace TestConsole
 {
@@ -29,7 +30,7 @@ namespace TestConsole
             //string sampleText2 = "新あたらしい記事きじを書かこうという気持きもちになるまで長ながい時間じかんがかかった。書かきたいことはたくさんあったけれど、" +
             //    "息子むすこを産うんだ後あとは書かく時間じかんがあまりなかった。";
 
-            //TextAnalyser textAnalyser = new TextAnalyser();
+            //TextAnalyser textAnalyser = new TextAnalyser(ITextData data);
 
 
             //string output = textAnalyser.GetReadabilityLevel(sampleText);

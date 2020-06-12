@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SynTextDataManager.Library.Models;
 using SynTextDataManager.Library.Logic;
-
+using SynTextDataManager.Library.DataAccess;
 
 namespace SynTextDataManager.Controllers
 {
@@ -27,12 +27,12 @@ namespace SynTextDataManager.Controllers
         // POST: api/Text
         public SampleText Post(SampleText text)
         {
-            TextAnalyser textAnalyser = new TextAnalyser();
-            string output = textAnalyser.GetReadabilityLevel(text.Text);
+            //TextAnalyser textAnalyser = new TextAnalyser();
+            //string output = textAnalyser.GetReadabilityLevel(text.Text);
             SampleText sample = new SampleText();
-            sample.Text = output;
+            //sample.Text = output;
             return sample;
-            //return text.Text;
+            ////return text.Text;
         }
 
         // PUT: api/Text/5
