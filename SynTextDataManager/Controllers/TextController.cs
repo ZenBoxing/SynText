@@ -12,6 +12,17 @@ namespace SynTextDataManager.Controllers
 {
     public class TextController : ApiController
     {
+        public TextData TextData { get; }
+
+        public TextController(TextData textData )
+        {
+            TextData = textData;
+        }
+
+        //public TextController()
+        //{
+
+        //}
         // GET: api/Text
         public IEnumerable<string> Get()
         {
@@ -27,10 +38,10 @@ namespace SynTextDataManager.Controllers
         // POST: api/Text
         public SampleText Post(SampleText text)
         {
-            //TextAnalyser textAnalyser = new TextAnalyser();
-            //string output = textAnalyser.GetReadabilityLevel(text.Text);
+            TextAnalyser textAnalyser = new TextAnalyser(TextData);
+            string output = textAnalyser.GetReadabilityLevel(text.Text);
             SampleText sample = new SampleText();
-            //sample.Text = output;
+            sample.Text = output;
             return sample;
             ////return text.Text;
         }

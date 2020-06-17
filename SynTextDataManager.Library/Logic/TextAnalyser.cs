@@ -9,13 +9,13 @@ using SynTextDataManager.Library.DataAccess;
 
 namespace SynTextDataManager.Library.Logic
 {
-    public class TextAnalyser
+    public class TextAnalyser               
     {
         private List<GunningFoxValue> GunningFoxValues = new List<GunningFoxValue>();
 
-        public ITextData ITextData { get; }
+        public TextData TextData { get; }
 
-        public TextAnalyser(ITextData ITextData)
+        public TextAnalyser(TextData TextData)
         {
             GunningFoxValues.Add(new GunningFoxValue(-2, "Unable to Access Data"));
             GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
@@ -34,7 +34,7 @@ namespace SynTextDataManager.Library.Logic
             GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
             GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
             GunningFoxValues.Add(new GunningFoxValue(18, "Above College Graduate"));
-            this.ITextData = ITextData;
+            this.TextData = TextData;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace SynTextDataManager.Library.Logic
         {
             try
             {
-                    List<WordModel> WordDictionary = ITextData.GetAllWords();
+                    List<WordModel> WordDictionary = TextData.GetAllWords();
 
                     List<string> FoundCompWords = new List<string>();
                     List<string> UnFoundCompWords = new List<string>();
@@ -219,7 +219,7 @@ namespace SynTextDataManager.Library.Logic
             {
                 List<string> foundWords = new List<string>();
 
-                List<WordModel> WordDictionary = ITextData.GetAllWords();
+                List<WordModel> WordDictionary = TextData.GetAllWords();
 
                     foreach (var word in text)
                     {

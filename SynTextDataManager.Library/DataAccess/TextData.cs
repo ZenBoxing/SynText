@@ -10,9 +10,9 @@ namespace SynTextDataManager.Library.DataAccess
 {
     public class TextData : ITextData
     {
-        private readonly ISqlDataAccess sqlDataAccess;
+        private readonly SqlDataAccess sqlDataAccess;
 
-        public TextData(ISqlDataAccess sqlDataAccess)
+        public TextData(SqlDataAccess sqlDataAccess)
         {
             this.sqlDataAccess = sqlDataAccess;
         }
