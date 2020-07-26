@@ -248,6 +248,7 @@ namespace SynTextDataManager.Library.Logic
             catch (Exception ex)
             {
                 string message = ex.Message;
+                string trace = ex.StackTrace;
             }
 
 

@@ -1,4 +1,4 @@
-﻿	CREATE PROCEDURE [dbo].[spGetAllWords]
+﻿CREATE PROCEDURE [dbo].[GetWords]
 
 
 AS

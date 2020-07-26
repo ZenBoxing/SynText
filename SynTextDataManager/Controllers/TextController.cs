@@ -43,7 +43,6 @@ namespace SynTextDataManager.Controllers
             SampleText sample = new SampleText();
             sample.Text = output;
             return sample;
-            ////return text.Text;
         }
 
         // PUT: api/Text/5

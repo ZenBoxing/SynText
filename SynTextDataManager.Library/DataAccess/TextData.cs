@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SynTextDataManager.Library.Internal.DataAccess;
 using SynTextDataManager.Library.Models;
 
+
 namespace SynTextDataManager.Library.DataAccess
 {
     public class TextData : ITextData
@@ -19,14 +20,15 @@ namespace SynTextDataManager.Library.DataAccess
 
         public List<WordModel> GetComplexWords()
         {
-            var output = sqlDataAccess.LoadData<WordModel, dynamic>("spComplexWordLookup", new { }, "SynTextDatabase");
+            var output = sqlDataAccess.LoadData<WordModel, dynamic>("SynTextDB.dbo.spComplexWordLookup", new { }, "SynTextDatabase");
             return output;
         }
 
         public List<WordModel> GetAllWords()
         {
-            var output = sqlDataAccess.LoadData<WordModel, dynamic>("spGetAllWords", new { }, "SynTextDatabase");
+            var output = sqlDataAccess.LoadData<WordModel, dynamic>("SynTextDB.dbo.GetWords", new { }, "SynTextDatabase");
             return output;
         }
     }
-}
+}       
+                

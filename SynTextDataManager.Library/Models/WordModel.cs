@@ -11,5 +11,14 @@ namespace SynTextDataManager.Library.Models
         public int entryID { get; set; }
         public string Word { get; set; }
         public int WordRank { get; set; }
+
+        public WordModel()
+        {
+        }
+
+        public WordModel(string word)
+        {
+            Word = word;
+        }
     }
 }
