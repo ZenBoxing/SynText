@@ -65,10 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\words.sql" />
-    <Build Include="dbo\Stored Procedures\sp_GetWordRank.sql" />
-    <Build Include="dbo\Stored Procedures\spComplexWordLookup.sql" />
-    <Build Include="dbo\Stored Procedures\spGetAllWords.sql" />
     <Build Include="dbo\Stored Procedures\GetWords.sql" />
+    <Build Include="dbo\Stored Procedures\GetComplexWords.sql" />
+    <Build Include="dbo\Stored Procedures\GetWordRank.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\SynTextDatabase.publish.xml" />

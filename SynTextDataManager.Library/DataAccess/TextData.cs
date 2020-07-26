@@ -20,7 +20,7 @@ namespace SynTextDataManager.Library.DataAccess
 
         public List<WordModel> GetComplexWords()
         {
-            var output = sqlDataAccess.LoadData<WordModel, dynamic>("SynTextDB.dbo.spComplexWordLookup", new { }, "SynTextDatabase");
+            var output = sqlDataAccess.LoadData<WordModel, dynamic>("SynTextDB.dbo.GetComplexWords", new { }, "SynTextDatabase");
             return output;
         }
 

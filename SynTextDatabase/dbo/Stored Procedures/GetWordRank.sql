@@ -1,6 +1,4 @@
-﻿
-
-CREATE PROCEDURE sp_GetWordRank
+﻿CREATE PROCEDURE GetWordRank
 	-- Add the parameters for the stored procedure here
 	@word nvarchar(50)
 AS

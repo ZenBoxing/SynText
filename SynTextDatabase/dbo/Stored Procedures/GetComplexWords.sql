@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spComplexWordLookup]
+﻿CREATE PROCEDURE [dbo].[GetComplexWords]
 	
 AS
 begin
