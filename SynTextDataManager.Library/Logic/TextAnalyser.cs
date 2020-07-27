@@ -11,30 +11,32 @@ namespace SynTextDataManager.Library.Logic
 {
     public class TextAnalyser               
     {
-        private List<GunningFoxValue> GunningFoxValues = new List<GunningFoxValue>();
-
+        private List<GunningFoxValue> GunningFoxValues;
+        private List<WordModel> WordDictionary;
         public TextData TextData { get; }
 
         public TextAnalyser(TextData TextData)
         {
-            GunningFoxValues.Add(new GunningFoxValue(-2, "Unable to Access Data"));
-            GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
-            GunningFoxValues.Add(new GunningFoxValue(0, "Invalid Sample"));
-            GunningFoxValues.Add(new GunningFoxValue(5, "Below Six Grade"));
-            GunningFoxValues.Add(new GunningFoxValue(6, "Sixth Grade"));
-            GunningFoxValues.Add(new GunningFoxValue(7, "Seventh Grade"));
-            GunningFoxValues.Add(new GunningFoxValue(8, "Eigth Grade"));
-            GunningFoxValues.Add(new GunningFoxValue(9, "High School Freshman"));
-            GunningFoxValues.Add(new GunningFoxValue(10, "High School Sophmore"));
-            GunningFoxValues.Add(new GunningFoxValue(11, "High School Junior"));
-            GunningFoxValues.Add(new GunningFoxValue(12, "High School Senior"));
-            GunningFoxValues.Add(new GunningFoxValue(13, "College Freshman"));
-            GunningFoxValues.Add(new GunningFoxValue(14, "College Sophmore"));
-            GunningFoxValues.Add(new GunningFoxValue(15, "College Junior"));
-            GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
-            GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
-            GunningFoxValues.Add(new GunningFoxValue(18, "Above College Graduate"));
+            //GunningFoxValues.Add(new GunningFoxValue(-2, "Unable to Access Data"));
+            //GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
+            //GunningFoxValues.Add(new GunningFoxValue(0, "Invalid Sample"));
+            //GunningFoxValues.Add(new GunningFoxValue(5, "Below Six Grade"));
+            //GunningFoxValues.Add(new GunningFoxValue(6, "Sixth Grade"));
+            //GunningFoxValues.Add(new GunningFoxValue(7, "Seventh Grade"));
+            //GunningFoxValues.Add(new GunningFoxValue(8, "Eigth Grade"));
+            //GunningFoxValues.Add(new GunningFoxValue(9, "High School Freshman"));
+            //GunningFoxValues.Add(new GunningFoxValue(10, "High School Sophmore"));
+            //GunningFoxValues.Add(new GunningFoxValue(11, "High School Junior"));
+            //GunningFoxValues.Add(new GunningFoxValue(12, "High School Senior"));
+            //GunningFoxValues.Add(new GunningFoxValue(13, "College Freshman"));
+            //GunningFoxValues.Add(new GunningFoxValue(14, "College Sophmore"));
+            //GunningFoxValues.Add(new GunningFoxValue(15, "College Junior"));
+            //GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
+            //GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
+            //GunningFoxValues.Add(new GunningFoxValue(18, "Above College Graduate"));
             this.TextData = TextData;
+            this.WordDictionary = TextData.GetAllWords();
+            this.GunningFoxValues = TextData.GetGunningFoxValues();
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace SynTextDataManager.Library.Logic
                 //---Get GunningFoxValue
                 int GIndex = GetGunningFoxIndex(separatedWordArray, separatedSentanceArray);
 
-                GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.FoxIndex == GIndex);
+                GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.Id == GIndex);
 
                 return GFoxValue.ReadingLevelByGrade;
 
@@ -104,8 +106,6 @@ namespace SynTextDataManager.Library.Logic
         {
             try
             {
-                    List<WordModel> WordDictionary = TextData.GetAllWords();
-
                     List<string> FoundCompWords = new List<string>();
                     List<string> UnFoundCompWords = new List<string>();
                     int complexWordCount = 0;
@@ -218,8 +218,6 @@ namespace SynTextDataManager.Library.Logic
             try
             {
                 List<string> foundWords = new List<string>();
-
-                List<WordModel> WordDictionary = TextData.GetAllWords();
 
                     foreach (var word in text)
                     {

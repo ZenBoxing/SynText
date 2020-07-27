@@ -8,13 +8,17 @@ namespace SynTextDataManager.Library.Models
 {
     public class GunningFoxValue
     {
-        public int FoxIndex { get; set; }
+        public int Id { get; set; }
         public string ReadingLevelByGrade { get; set; }
 
-        public GunningFoxValue(int foxIndex, string readingLevelByGrade)
+        public GunningFoxValue()
         {
-            FoxIndex = foxIndex;
-            ReadingLevelByGrade = readingLevelByGrade;
+        }
+
+        public GunningFoxValue(int Id, string ReadingLevelByGrade)
+        {
+            this.Id = Id;
+            this.ReadingLevelByGrade = ReadingLevelByGrade;
         }
     }
 }

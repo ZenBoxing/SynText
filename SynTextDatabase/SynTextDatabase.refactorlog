@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ede1a85a-de55-4734-a3f8-2738656a092d" ChangeDateTime="07/27/2020 17:31:21">
+    <Property Name="ElementName" Value="[dbo].[gunningfoxvalues].[FoxValue]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[gunningfoxvalues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d9ec894-cdc1-408f-9cbf-491083a8d357" ChangeDateTime="07/27/2020 17:41:04">
+    <Property Name="ElementName" Value="[dbo].[gunningfoxvalues].[ReadingValueByGrade]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[gunningfoxvalues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ReadingLevelByGrade" />
+  </Operation>
+</Operations>

@@ -29,6 +29,12 @@ namespace SynTextDataManager.Library.DataAccess
             var output = sqlDataAccess.LoadData<WordModel, dynamic>("SynTextDB.dbo.GetWords", new { }, "SynTextDatabase");
             return output;
         }
+
+        public List<GunningFoxValue> GetGunningFoxValues()
+        {
+            var output = sqlDataAccess.LoadData<GunningFoxValue, dynamic>("SynTextDB.dbo.GetGunningFoxValues", new { }, "SynTextDatabase");
+            return output;
+        }
     }
 }       
                 

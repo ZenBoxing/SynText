@@ -68,8 +68,13 @@
     <Build Include="dbo\Stored Procedures\GetWords.sql" />
     <Build Include="dbo\Stored Procedures\GetComplexWords.sql" />
     <Build Include="dbo\Stored Procedures\GetWordRank.sql" />
+    <Build Include="dbo\Tables\gunningfoxvalues.sql" />
+    <Build Include="dbo\Stored Procedures\GetGunningFoxValues.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\SynTextDatabase.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SynTextDatabase.refactorlog" />
   </ItemGroup>
 </Project>
