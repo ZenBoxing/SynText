@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="DataAccess\ITextData.cs" />
     <Compile Include="DataAccess\TextData.cs" />
+    <Compile Include="Exceptions\DataAccessException.cs" />
+    <Compile Include="Exceptions\InvalidSampleException.cs" />
     <Compile Include="Internal\DataAccess\ISqlDataAccess.cs" />
     <Compile Include="Internal\DataAccess\SqlDataAccess.cs" />
     <Compile Include="Logic\TextAnalyser.cs" />

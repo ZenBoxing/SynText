@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SynTextDataManager.Library.Models;
 using SynTextDataManager.Library.DataAccess;
+using SynTextDataManager.Library.Exceptions;
 
 namespace SynTextDataManager.Library.Logic
 {
@@ -17,23 +18,6 @@ namespace SynTextDataManager.Library.Logic
 
         public TextAnalyser(TextData TextData)
         {
-            //GunningFoxValues.Add(new GunningFoxValue(-2, "Unable to Access Data"));
-            //GunningFoxValues.Add(new GunningFoxValue(-1, "Invalid Sample"));
-            //GunningFoxValues.Add(new GunningFoxValue(0, "Invalid Sample"));
-            //GunningFoxValues.Add(new GunningFoxValue(5, "Below Six Grade"));
-            //GunningFoxValues.Add(new GunningFoxValue(6, "Sixth Grade"));
-            //GunningFoxValues.Add(new GunningFoxValue(7, "Seventh Grade"));
-            //GunningFoxValues.Add(new GunningFoxValue(8, "Eigth Grade"));
-            //GunningFoxValues.Add(new GunningFoxValue(9, "High School Freshman"));
-            //GunningFoxValues.Add(new GunningFoxValue(10, "High School Sophmore"));
-            //GunningFoxValues.Add(new GunningFoxValue(11, "High School Junior"));
-            //GunningFoxValues.Add(new GunningFoxValue(12, "High School Senior"));
-            //GunningFoxValues.Add(new GunningFoxValue(13, "College Freshman"));
-            //GunningFoxValues.Add(new GunningFoxValue(14, "College Sophmore"));
-            //GunningFoxValues.Add(new GunningFoxValue(15, "College Junior"));
-            //GunningFoxValues.Add(new GunningFoxValue(16, "College Senior"));
-            //GunningFoxValues.Add(new GunningFoxValue(17, "College Graduate"));
-            //GunningFoxValues.Add(new GunningFoxValue(18, "Above College Graduate"));
             this.TextData = TextData;
             this.WordDictionary = TextData.GetAllWords();
             this.GunningFoxValues = TextData.GetGunningFoxValues();
@@ -50,24 +34,48 @@ namespace SynTextDataManager.Library.Logic
             //Separate text into array of individual words
             string[] separatedWordArray = GetSeparatedWordArray(sampleText);
 
-            if (isTextInEnglish(separatedWordArray))
+            try
             {
-                //----Split sample text into sentance array 
+                if (isTextInEnglish(separatedWordArray))
+                {
+                    //----Split sample text into sentance array 
 
-                string[] separatedSentanceArray = GetSeparatedSentenceArray(sampleText);
+                    string[] separatedSentanceArray = GetSeparatedSentenceArray(sampleText);
 
-                //---Get GunningFoxValue
-                int GIndex = GetGunningFoxIndex(separatedWordArray, separatedSentanceArray);
+                    //---Get GunningFoxValue
+                    int GIndex = GetGunningFoxIndex(separatedWordArray, separatedSentanceArray);
 
-                GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.Id == GIndex);
+                    GunningFoxValue GFoxValue = GunningFoxValues.Find(x => x.Id == GIndex);
 
-                return GFoxValue.ReadingLevelByGrade;
 
+                    if (GIndex >= 5)
+                    {
+                        return GFoxValue.ReadingLevelByGrade;
+                    }
+                    else if (GIndex == -2)
+                    {
+                        throw new DataAccessException("Unable to access database");
+                    }
+                    else
+                    {
+                        throw new InvalidSampleException("Invalid Sample");
+                    }
+
+                }   
+                else
+                {
+                    throw new InvalidSampleException("English Text Only");
+                }
             }
-            else
+            catch (InvalidSampleException Ex)
             {
-                return "English Text Only";
+                return Ex.Message;
             }
+            catch (DataAccessException Ex)
+            {
+                return Ex.Message;
+            }
+            
         }
 
         private string[] GetSeparatedSentenceArray(string sampleText)
