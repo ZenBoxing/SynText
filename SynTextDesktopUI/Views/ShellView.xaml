@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SynTextDesktopUI.Views"
         mc:Ignorable="d" FontSize="18" 
-        Title="SynText" Height="450" Width="800" 
+        Title="SynText" Height="620" Width="1000" 
         WindowStartupLocation="CenterScreen" 
         FontFamily="{StaticResource MontserratRegular}" 
         WindowStyle="None" ResizeMode="NoResize"
+        Background="{StaticResource LightPurpleBrush}"
         MouseDown="Window_MouseDown"
         >
 
-       <DockPanel>
+    <DockPanel>
         <Grid Height="27" DockPanel.Dock="Top">
             <StackPanel Grid.Row="0" 
                     Grid.Column="0"
-                    Grid.ColumnSpan="3"
                     Orientation="Horizontal"
                     MinHeight="25"
-                    Background="White"
+                    Background="{StaticResource LightPurpleBrush}"
                     VerticalAlignment="Top"
-                    Margin="0 2 0 0"
+                    Margin="0,2,0,0" Height="25"
                     >
                 <StackPanel Orientation="Horizontal"
                         Margin="20 0 0 0"
@@ -50,17 +50,13 @@
                             Background="white"
                             BorderThickness="0">
                         <Image Source="/Images/CircleCloseNavy.png"
-                       MaxHeight="25"/>    
+                       MaxHeight="25"/>
                     </Button>
                 </StackPanel>
 
             </StackPanel>
         </Grid>
-        <Border Background="White" Padding="2" >
-            <Border Padding="2">
                 <ContentControl x:Name="ActiveItem"/>
-            </Border>
-        </Border>
     </DockPanel>
-        
+
 </Window>

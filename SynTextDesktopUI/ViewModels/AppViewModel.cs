@@ -15,7 +15,7 @@ namespace SynTextDesktopUI.ViewModels
         
         }
 
-        private string _sampleText = "Type/paste sample text here.";
+        private string _sampleText = "TYPE / PASTE SAMPLE TEXT HERE";
 
         public string SampleText
         {

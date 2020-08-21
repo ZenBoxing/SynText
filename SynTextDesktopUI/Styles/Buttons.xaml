@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SynTextDesktopUI.Styles">
+    <Style x:Key="SubmitButton" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource MontserratLight}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkVioletBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock Text="GET READABILITY LEVEL: "
+                               FontSize="16"
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="White"
+                                        Duration="0:0:0.1"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource DarkViolet}"
+                                        Duration="0:0:0.1"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>    
+</ResourceDictionary>

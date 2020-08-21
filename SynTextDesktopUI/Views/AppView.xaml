@@ -6,14 +6,8 @@
              xmlns:local="clr-namespace:SynTextDesktopUI.Views"
              mc:Ignorable="d" Background="white" FontSize="18"
              FontFamily="{StaticResource MontserratRegular}"
-             d:DesignHeight="425" d:DesignWidth="800">
-    <Grid >
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="#111344" Offset="1"/>
-                <GradientStop Color="#FF662362"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+             d:DesignHeight="525" d:DesignWidth="800">
+    <Grid  Background="{StaticResource LightPurpleBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -23,65 +17,71 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="1">
-            <Button x:Name="Submit" FontFamily="{StaticResource MontserratSemiBold}"  
-                    Margin="30 10 30 10" Padding="10 10 10 10"
-                    MinHeight="45" Background="#FFEA87D4">
-                <StackPanel>
-                    <TextBlock Text="SUBMIT"/>
-                    <Image Grid.Row="8" 
-                               Grid.Column="1" 
-                               MaxHeight="25"
-                               MaxWidth="25"
-                               Source="/Images/LoadingSpin.png" 
-                               RenderTransformOrigin="0.5,0.5"
-                               Visibility="{Binding IsProcessing, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-                        <Image.RenderTransform>
-                            <RotateTransform x:Name="Rotate" Angle="0"/>
-                        </Image.RenderTransform>
-                        <Image.Triggers>
-                            <EventTrigger RoutedEvent="Loaded">
-                                <BeginStoryboard>
-                                    <Storyboard RepeatBehavior="Forever" >
-                                        <DoubleAnimation
-                                                Storyboard.TargetName="Rotate"
-                                                Storyboard.TargetProperty="(RotateTransform.Angle)"
-                                                From="0"
-                                                To="360"
-                                                Duration="0:0:1"
-                                                />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Image.Triggers>
-                    </Image>
-                </StackPanel>
-            </Button>
-            <TextBlock Text="Readability Level: " Margin="70 10 30 0" Foreground="White"/>
-            <TextBlock Text="{Binding Path=Response, Mode=OneWay}" Margin="30 0 30 10"
-                           Foreground="White" TextWrapping="Wrap" TextAlignment="Center"/>
-        </StackPanel>
-
-
-
+        
         <StackPanel Grid.Row="0" Grid.RowSpan="3" 
-                    Grid.Column="1" Grid.ColumnSpan="2">
-            <Border Padding="10 10 10 3">
+                    Grid.Column="0" Grid.ColumnSpan="3" RenderOptions.EdgeMode="Aliased">
+            <Border BorderThickness="1" BorderBrush="{StaticResource LightPurpleBrush}">
                 <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
                          VerticalScrollBarVisibility="Auto" MaxHeight="350"
-                         FontSize="14" MaxLength="5000"  Background="White"
-                         Padding="5" />
-            </Border>
+                         FontSize="16" MaxLength="5000"  Background="{StaticResource LightPurpleBrush}"
+                         Padding="5" FontFamily="{StaticResource MontserratLight}" 
+                         
+                         />
 
-            <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="12" Foreground="White"
-                               Margin="450 0 0 0"/>
-                <TextBlock Text="/5000" FontSize="12" Foreground="White"/>
+            </Border>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"
+                        Margin="10">
+                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="16" 
+                           FontFamily="{StaticResource MontserratLight}" 
+                           Foreground="{StaticResource DarkVioletBrush}"   />
+                <TextBlock Text="/5000" FontSize="16" Foreground="{StaticResource DarkVioletBrush}"
+                           FontFamily="{StaticResource MontserratLight}"/>
             </StackPanel>
 
 
+
         </StackPanel>
+
+        
+        <StackPanel Grid.Row="3" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Top"
+                    RenderOptions.EdgeMode="Aliased" Margin="0 -10 0 0"> 
+            <Image Source="/Images/LoadingSpin.png"
+                           MaxHeight="15"
+                           MaxWidth="15"
+                           Margin="5"
+                           RenderTransformOrigin="0.5,0.5"
+                           HorizontalAlignment="Center"
+                           Visibility="{Binding IsProcessing, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="Rotate" Angle="0"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Rotate"
+                                         Storyboard.TargetProperty="Angle"
+                                         From="0"
+                                         To="360"
+                                         Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <Button x:Name="Submit" Style="{StaticResource SubmitButton}"
+                    Margin="30 0 0 0"/>
+            <TextBlock Text="{Binding Path=Response, Mode=OneWay}"  Margin="30 0 30 10"
+                       Foreground="{StaticResource DarkVioletBrush}" 
+                       TextWrapping="Wrap" 
+                       TextAlignment="Center"
+                       FontFamily="{StaticResource MontserratLight}"/>
+        </StackPanel>
+
+        
+
+        
     </Grid>
 </UserControl>
