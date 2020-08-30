@@ -29,5 +29,11 @@ namespace SynTextDesktopUI.Views
         {
 
         }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(SampleText);
+        }
+
     }
 }

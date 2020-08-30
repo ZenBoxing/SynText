@@ -29,5 +29,7 @@ namespace SynTextDesktopUI.Views
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+
     }
 }

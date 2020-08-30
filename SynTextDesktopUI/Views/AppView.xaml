@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SynTextDesktopUI.Views"
              mc:Ignorable="d" Background="white" FontSize="18"
              FontFamily="{StaticResource MontserratRegular}"
-             d:DesignHeight="525" d:DesignWidth="800">
+             d:DesignHeight="525" d:DesignWidth="800"
+             Loaded="OnLoaded">
     <Grid  Background="{StaticResource LightPurpleBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -19,24 +20,27 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0" Grid.RowSpan="3" 
-                    Grid.Column="0" Grid.ColumnSpan="3" RenderOptions.EdgeMode="Aliased">
+                    Grid.Column="0" Grid.ColumnSpan="3" 
+                    RenderOptions.EdgeMode="Aliased"
+                    Margin="17 10 0 0">
             <Border BorderThickness="1" BorderBrush="{StaticResource LightPurpleBrush}">
                 <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
                          VerticalScrollBarVisibility="Auto" MaxHeight="350"
-                         FontSize="16" MaxLength="5000"  Background="{StaticResource LightPurpleBrush}"
+                         FontSize="24" MaxLength="5000"  Background="{StaticResource LightPurpleBrush}"
                          Padding="5" FontFamily="{StaticResource MontserratLight}" 
-                         
+                         Style="{StaticResource MainTextBox}"
+                         Tag="TYPE / PASTE TEXT HERE"
                          />
 
             </Border>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"
                         Margin="10">
-                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="16" 
+                <TextBlock Text="{Binding Path=SampleText.Length, Mode=OneWay}" FontSize="24" 
                            FontFamily="{StaticResource MontserratLight}" 
                            Foreground="{StaticResource DarkVioletBrush}"   />
-                <TextBlock Text="/5000" FontSize="16" Foreground="{StaticResource DarkVioletBrush}"
+                <TextBlock Text=" / 5000" FontSize="24" Foreground="{StaticResource DarkVioletBrush}"
                            FontFamily="{StaticResource MontserratLight}"/>
             </StackPanel>
 
@@ -44,9 +48,9 @@
 
         </StackPanel>
 
-        
+
         <StackPanel Grid.Row="3" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Top"
-                    RenderOptions.EdgeMode="Aliased" Margin="0 -10 0 0"> 
+                    RenderOptions.EdgeMode="Aliased" Margin="0 -10 0 0">
             <Image Source="/Images/LoadingSpin.png"
                            MaxHeight="15"
                            MaxWidth="15"
@@ -80,8 +84,8 @@
                        FontFamily="{StaticResource MontserratLight}"/>
         </StackPanel>
 
-        
 
-        
+
+
     </Grid>
 </UserControl>

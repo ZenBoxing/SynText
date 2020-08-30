@@ -7,8 +7,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock Text="GET READABILITY LEVEL: "
-                               FontSize="16"
+                    <TextBlock Text="GET READABILITY LEVEL :"
+                               FontSize="24"
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Center"/>
                 </ControlTemplate>
