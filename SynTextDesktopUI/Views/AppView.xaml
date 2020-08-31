@@ -27,7 +27,7 @@
                     Margin="17 10 0 0">
             <Border BorderThickness="1" BorderBrush="{StaticResource LightPurpleBrush}">
                 <TextBox x:Name="SampleText" TextWrapping="Wrap" MinHeight="350"
-                         VerticalScrollBarVisibility="Auto" MaxHeight="350"
+                         VerticalScrollBarVisibility="Visible" MaxHeight="350"
                          FontSize="24" MaxLength="5000"  Background="{StaticResource LightPurpleBrush}"
                          Padding="5" FontFamily="{StaticResource MontserratLight}" 
                          Style="{StaticResource MainTextBox}"

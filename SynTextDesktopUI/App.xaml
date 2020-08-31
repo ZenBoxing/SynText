@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBoxes.xaml"/>
+                <ResourceDictionary Source="/Styles/ScrollBars.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key ="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
