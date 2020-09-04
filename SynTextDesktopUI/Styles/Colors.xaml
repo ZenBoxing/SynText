@@ -3,10 +3,12 @@
                     xmlns:local="clr-namespace:SynTextDesktopUI.Styles">
 
     <Color x:Key="LightPurple">#FFEA87D4</Color>
+    <Color x:Key="LightPurpleShade">#ED97DA</Color>
     <Color x:Key="DarkViolet">#FF662362</Color>
     <Color x:Key="DarkVioletShade">#3C1F47</Color>
 
     <SolidColorBrush x:Key="LightPurpleBrush" Color="{StaticResource LightPurple}"></SolidColorBrush>
+    <SolidColorBrush x:Key="LightPurpleShadeBrush" Color="{StaticResource LightPurpleShade}"></SolidColorBrush>
     <SolidColorBrush x:Key="DarkVioletBrush" Color="{StaticResource DarkViolet}"></SolidColorBrush>
     <SolidColorBrush x:Key="DarkVioletShadeBrush" Color="{StaticResource DarkVioletShade}"></SolidColorBrush>
     
