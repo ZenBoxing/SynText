@@ -50,7 +50,8 @@
 
 
         <StackPanel Grid.Row="3" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Top"
-                    RenderOptions.EdgeMode="Aliased" Margin="0 -10 0 0">
+                    RenderOptions.EdgeMode="Aliased" Margin="10 -10 0 0"
+                    Grid.ColumnSpan="2">
             <Image Source="/Images/LoadingSpin.png"
                            MaxHeight="15"
                            MaxWidth="15"
@@ -76,11 +77,13 @@
                 </Image.Triggers>
             </Image>
             <Button x:Name="Submit" Style="{StaticResource SubmitButton}"
-                    Margin="30 0 0 0"/>
-            <TextBlock Text="{Binding Path=Response, Mode=OneWay}"  Margin="30 0 30 10"
-                       Foreground="{StaticResource DarkVioletBrush}" 
+                    Margin="10 0 0 0"/>
+            <TextBlock Text="{Binding Path=Response, Mode=OneWay}"  Margin="10 0"
+                       Foreground="{StaticResource DarkVioletBrush}"
+                       FontSize="24"
                        TextWrapping="Wrap" 
                        TextAlignment="Center"
+                       VerticalAlignment="Center"
                        FontFamily="{StaticResource MontserratLight}"/>
         </StackPanel>
 
