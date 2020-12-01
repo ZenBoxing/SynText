@@ -1,0 +1,49 @@
+﻿@page "/Syntext"
+
+<h3>Syntext</h3>
+
+<textarea rows="4" cols="50"
+          placeholder="TYPE / PASTE TEXT HERE"
+          autofocus="autofocus"
+          maxlength="5000"
+          required
+          >@TextSample</textarea> 
+<br/>
+<br/>
+<button>Get Readability Level</button>
+
+<label name="result" ></label> 
+   
+@code {
+
+    public string TextSample = "Tests";
+
+    public string ReadingLevel = "TEst";
+
+    public async Task GetReadabilityLevel(string textSample)
+    {
+        string url = "http://localhost:53146/api/Text";
+
+        var value = new Dictionary<string, string> { { "Text", textSample } };
+
+        using (APIHelper.ApiClient)
+        {
+            Uri uri = new Uri(url);
+            APIHelper.ApiClient.BaseAddress = uri;
+            var response = await APIHelper.ApiClient.PostAsJsonAsync<string>("Text", textSample);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string rs = await response.Content.ReadAsStringAsync();
+                ReadingLevel = rs;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+
+        }
+
+
+    }
+}

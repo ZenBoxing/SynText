@@ -36,7 +36,6 @@ namespace SynTextDataManager.Library.Internal.DataAccess
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
-
                 List<T> rows = connection
                     .Query<T>(storedProcedure, parameters, commandType: CommandType.StoredProcedure)
                     .ToList();

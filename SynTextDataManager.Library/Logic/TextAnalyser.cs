@@ -80,17 +80,13 @@ namespace SynTextDataManager.Library.Logic
 
         private string[] GetSeparatedSentenceArray(string sampleText)
         {
-
-            //Matches question mark and exclam characters
-            Regex sentanceRegex = new Regex("[?!]");
-
-
-            char[] sentanceSeparators = { '.' };
+            //Regex sentanceRegex = new Regex("[?!]");
+            char[] sentanceSeparators = { '.','!','?' };
             //Replaces matches with period charcter
-            string periodOnlyText = sentanceRegex.Replace(sampleText, ".");
+            //string periodOnlyText = sentanceRegex.Replace(sampleText, ".");
             //splits text into sentance array
 
-            string[] separatedSentanceArray = periodOnlyText.Split(sentanceSeparators, StringSplitOptions.RemoveEmptyEntries);
+            string[] separatedSentanceArray = sampleText.Split(sentanceSeparators, StringSplitOptions.RemoveEmptyEntries);
 
             return separatedSentanceArray;
         }
