@@ -44,7 +44,7 @@
                                    VerticalAlignment="Top"
                                    HorizontalAlignment="Left"
                                    Opacity="0.5"
-                                   Foreground="{StaticResource DarkVioletBrush}"
+                                   Foreground="Black"
                                    Margin="6 3 0 0"
                                    >
                             <TextBlock.Style>

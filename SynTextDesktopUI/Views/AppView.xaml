@@ -31,6 +31,7 @@
                          FontSize="24" MaxLength="5000"  Background="{StaticResource LightPurpleBrush}"
                          Padding="5" FontFamily="{StaticResource MontserratLight}" 
                          Style="{StaticResource MainTextBox}"
+                         Foreground="{StaticResource DarkVioletBrush}"
                          Tag="TYPE / PASTE TEXT HERE"
                          />
 
